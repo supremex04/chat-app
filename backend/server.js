@@ -5,6 +5,8 @@ import connectToMongoDB from "./db/connectToMongoDB.js";
 const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 5000
+
+
 // The get method is used to respond to HTTP GET requests, which are 
 // typically used to request data from the server.
 // app.get("/", (req,res) => {
@@ -17,7 +19,11 @@ const PORT = process.env.PORT || 5000
 
 // });
 app.use(express.json());  // to parse the incoming requests with JSON payloads (from req.body)
+console.log("works");
 app.use("/api/auth", authRoutes);
+app.get('/', (req, res) => {
+    res.send('Welcome to the API');
+  });
 app.listen(PORT, () => {
     connectToMongoDB();
     console.log(`Server is running on port ${PORT}`)
